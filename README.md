@@ -1,0 +1,1 @@
+This website is a place where programmers can share their projects, programming tips and tricks. Users can sign up, setup their profile, add posts to the website. The post pages are paginated displaying 5 posts on each page. There is also option for comments, recover your password, view posts made by a specific user etc.
