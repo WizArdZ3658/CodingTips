@@ -17,6 +17,10 @@
             <p class="article-content">{{ object.content }}</p>
         </div>
     </article>
+    <div id="like-section">
+        {% include 'blog/like_section.html' %}
+    </div>
+    <hr>
     <a type="button" class="btn btn-primary" href="{% url 'add_comment_to_post' object.id %}">Add comment</a>
     <hr>
     {% for comment in object.comments.all %}

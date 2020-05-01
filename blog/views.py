@@ -1,9 +1,12 @@
+from abc import ABC
+
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post, Comment
 
@@ -38,6 +41,26 @@ class PostListView(ListView):
     paginate_by = 5
 
 
+def like_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('id'))
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+    else:
+        post.likes.add(request.user)
+        is_liked = True
+    context = {
+        'post': post,
+        'is_liked': is_liked,
+        'total_likes': post.total_likes(),
+    }
+    if request.is_ajax():
+        html = render_to_string('blog/like_section.html', context, request=request)
+        return JsonResponse({'form': html})
+    # return redirect('post_detail', pk=post.pk)
+
+
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'  # looks for <app>/<model>_<viewtype>.html
@@ -51,6 +74,16 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        is_liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            is_liked = True
+        context['is_liked'] = is_liked
+        context['total_likes'] = post.total_likes()
+        return context
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
