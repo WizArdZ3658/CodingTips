@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/f6ed67285a.js" crossorigin="anonymous"></script>
+
     {% if title %}
         <title>Tips&Tricks - {{ title }}</title>
     {% else %}
@@ -36,9 +39,9 @@
               {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i></a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
               {% endif %}
             </div>
@@ -94,6 +97,44 @@
                     },
                     success: function(response){
                         $('#like-section').html(response['form'])
+                    },
+                    error: function(rs, e){
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+            $(document).on('click', '#uvote', function(event){
+                event.preventDefault();
+                var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "vote_comment" %}',
+                    data: {
+                        'id': pk,
+                        'mode': 'upvote',
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $('#comment-section').html(response['form'])
+                    },
+                    error: function(rs, e){
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+            $(document).on('click', '#dvote', function(event){
+                event.preventDefault();
+                var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "vote_comment" %}',
+                    data: {
+                        'id': pk,
+                        'mode': 'downvote',
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $('#comment-section').html(response['form'])
                     },
                     error: function(rs, e){
                         console.log(rs.responseText);

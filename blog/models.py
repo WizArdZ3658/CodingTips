@@ -26,6 +26,14 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    upvotes = models.ManyToManyField(User, related_name="upvotes", blank=True)
+    downvotes = models.ManyToManyField(User, related_name="downvotes", blank=True)
+
+    def total_upvotes(self):
+        return self.upvotes.count()
+
+    def total_downvotes(self):
+        return self.downvotes.count()
 
     def __str__(self):
         return self.text

@@ -61,6 +61,34 @@ def like_post(request):
     # return redirect('post_detail', pk=post.pk)
 
 
+def vote_comment(request):
+    comment = get_object_or_404(Comment, id=request.POST.get('id'))
+    mode = request.POST.get('mode')
+
+    if mode == 'downvote':
+        if comment.downvotes.filter(id=request.user.id).exists():
+            comment.downvotes.remove(request.user)
+        else:
+            if comment.upvotes.filter(id=request.user.id).exists():
+                comment.upvotes.remove(request.user)
+            comment.downvotes.add(request.user)
+
+    elif mode == 'upvote':
+        if comment.upvotes.filter(id=request.user.id).exists():
+            comment.upvotes.remove(request.user)
+        else:
+            if comment.downvotes.filter(id=request.user.id).exists():
+                comment.downvotes.remove(request.user)
+            comment.upvotes.add(request.user)
+
+    context = {
+        'post': comment.post
+    }
+    if request.is_ajax():
+        html = render_to_string('blog/comment_section.html', context, request=request)
+        return JsonResponse({'form': html})
+
+
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'  # looks for <app>/<model>_<viewtype>.html
@@ -74,6 +102,7 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+    context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c99a671b-fcce-4a01-90d0-b7995963f639" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blog/templates/blog/like_section.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/migrations/0004_auto_20200503_1438.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/templates/blog/comment_section.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/staticfiles/blog/main.b80cdedaa0f5.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/staticfiles/blog/main.b80cdedaa0f5.css.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/static/blog/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/blog/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/blog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/blog/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/like_section.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/like_section.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/post_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/blog/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/blog/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/blog/main.css.gz" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/blog/main.css.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/staticfiles.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,14 +82,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1205" y="327" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588082217343" />
-    <state x="1220" y="279" key="FileChooserDialogImpl" timestamp="1588338977589">
+    <state x="1220" y="279" key="FileChooserDialogImpl" timestamp="1589180244686">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1220" y="279" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588338977589" />
-    <state x="1136" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588338082470">
+    <state x="1220" y="279" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589180244686" />
+    <state x="1136" y="344" width="607" height="352" key="com.intellij.ide.util.TipDialog" timestamp="1589132821799">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1136" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588338082470" />
+    <state x="1136" y="344" width="607" height="352" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589132821799" />
     <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1587733275582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

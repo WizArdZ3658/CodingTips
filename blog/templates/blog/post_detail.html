@@ -1,39 +1,32 @@
 {% extends "blog/base.html" %}
 {% block content %}
     <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-                <small class="text-muted">{{ object.date_posted }}</small>
-                {% if object.author == user %}
+                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+                {% if post.author == user %}
                     <div>
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">Delete</a>
                     </div>
                 {% endif %}
             </div>
-            <h2>{{ object.title }}</h2>
-            <p class="article-content">{{ object.content }}</p>
+            <h2>{{ post.title }}</h2>
+            <p class="article-content">{{ post.content }}</p>
         </div>
     </article>
     <div id="like-section">
         {% include 'blog/like_section.html' %}
     </div>
     <hr>
-    <a type="button" class="btn btn-primary" href="{% url 'add_comment_to_post' object.id %}">Add comment</a>
+    <a type="button" class="btn btn-primary" href="{% url 'add_comment_to_post' post.id %}">Add comment</a>
     <hr>
-    {% for comment in object.comments.all %}
-        <div class="container">
-            <div class="container">
-                <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
-                <a class="mr-2" href="{% url 'user-posts' comment.author %}">{{ comment.author }}</a>
-                <small class="text-muted">{{ comment.created_date }}</small>
-            </div>
-            <p>{{ comment.text|linebreaks }}</p>
-        </div>
-    {% empty %}
-        <p>No comments here yet :(</p>
-    {% endfor %}
+
+    <div id="comment-section">
+        {% include 'blog/comment_section.html' %}
+    </div>
+
 
 {% endblock content %}

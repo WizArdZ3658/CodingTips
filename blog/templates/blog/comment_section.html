@@ -1,0 +1,22 @@
+{% for comment in post.comments.all %}
+    <div class="container">
+        <div class="container">
+            <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
+            <a class="mr-2" href="{% url 'user-posts' comment.author %}">{{ comment.author }}</a>
+            <small class="text-muted">{{ comment.created_date }}</small>
+            <div style="display: inline-block">
+                {% if request.user.is_authenticated %}
+                <form action="{% url 'vote_comment' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" id="uvote" name="comment_id" value="{{ comment.id }}"><i class="fas fa-chevron-up"></i></button>
+                    <button type="submit" id="dvote" name="comment_id" value="{{ comment.id }}"><i class="fas fa-chevron-down"></i></button>
+                    <small class="text-muted" style="font-weight:bold;">{{ comment.upvotes.count }} upvote{{ comment.upvotes.count|pluralize }}, {{ comment.downvotes.count }} downvote{{ comment.downvotes.count|pluralize }}</small>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
