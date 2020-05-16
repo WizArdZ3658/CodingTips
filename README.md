@@ -1,4 +1,4 @@
-# Coding Tips
+# Coding Tips [link](https://codingtips.herokuapp.com/)
 A website where programmers can share their projects, hacks and some cool programming tips. 
 
 ## Features
