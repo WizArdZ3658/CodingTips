@@ -12,5 +12,7 @@ urlpatterns = [
     path('about/', views.about, name='blog-about'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
     path('like/', views.like_post, name="like_post"),
-    path('vote/', views.vote_comment, name="vote_comment")
+    path('vote/', views.vote_comment, name="vote_comment"),
+    path('autocomplete/', views.autocomplete, name="ajax_autocomplete"),
+    path('search/', views.search_blogpost, name="search_blogpost")
 ]

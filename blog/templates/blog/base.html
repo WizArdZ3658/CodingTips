@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
+
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
 
     <!-- Font Awesome -->
@@ -63,15 +65,11 @@
         </div>
         <div class="col-md-4">
           <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
+            <h3>Search posts</h3>
+            <form class="form-group">
+                <input type="text" class="form-control" id="search_bar" placeholder="Search ...">
+                <button type="submit" class="btn btn-primary mt-2" id="goto_post">Go to Post</button>
+            </form>
           </div>
         </div>
       </div>
@@ -83,6 +81,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(document).ready(function(event){
             $(document).on('click', '#like', function(event){
@@ -139,6 +138,46 @@
                     error: function(rs, e){
                         console.log(rs.responseText);
                     },
+                });
+            });
+            $("#search_bar").on('keyup', function(){
+                var value = $(this).val();
+                // console.log(value);
+                $.ajax({
+                    url: '{% url "ajax_autocomplete" %}',
+                    data: {
+                        'search' : value
+                    },
+                    success: function(data) {
+                        list = data.list;
+                        $("#search_bar").autocomplete({
+                            source: list,
+                            minLength: 3
+                        });
+                    },
+                });
+            });
+            $("#goto_post").on('click', function(){
+                var title = $("#search_bar").val();
+                $.ajax({
+                    url: '{% url "search_blogpost" %}',
+                    data: {
+                        'title' : title
+                    },
+                    success: function(data) {
+                        id = data.id;
+                        console.log(id)
+                        if (id == -1){
+                            window.alert("Please enter a valid title");
+                        }
+                        else{
+                            var str1 = "http://127.0.0.1:8000/post/";
+                            var str2 = id.toString();
+                            var str3 = "/";
+                            var url = str1.concat(str2, str3);
+                            window.location = url;
+                        }
+                    }
                 });
             });
         });

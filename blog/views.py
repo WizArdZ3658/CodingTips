@@ -174,3 +174,31 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
+
+
+def autocomplete(request):
+    if request.is_ajax():
+        queryset = Post.objects.filter(title__istartswith=request.GET.get('search', None))
+        list = []
+        for i in queryset:
+            list.append(i.title)
+        data = {
+            'list': list,
+        }
+        return JsonResponse(data)
+
+
+def search_blogpost(request):
+    if request.is_ajax():
+        post = Post.objects.filter(title=request.GET.get('title', None))
+        # print(post)
+        id = 0
+        if len(post) == 0:
+            id = -1
+        else:
+            # print(post[0].id)
+            id = post[0].id
+        data = {
+            'id': id,
+        }
+        return JsonResponse(data)
