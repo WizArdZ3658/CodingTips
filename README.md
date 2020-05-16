@@ -1,5 +1,6 @@
-# Coding Tips [link](https://codingtips.herokuapp.com/)
+# Coding Tips
 A website where programmers can share their projects, hacks and some cool programming tips. 
+Click [here](https://codingtips.herokuapp.com/) to access the website.
 
 ## Features
 Users can sign up, setup their profile, add posts to the website. The post pages are paginated displaying 5 posts on each page. 
