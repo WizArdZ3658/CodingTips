@@ -7,6 +7,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
+  font-weight: 400;
 }
 
 ul {
@@ -91,4 +92,25 @@ a.article-title:hover {
     cursor:pointer;
     overflow: hidden;
     outline:none;
+}
+
+.wmd-preview {
+    display: none;
+}
+
+div.wmd-panel {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+div.wmd-button-bar {
+    background-color: white;
+}
+
+textarea.wmd-input {
+    background-color: white;
+}
+
+a.article-title, #preview-title {
+    font-weight: 700;
 }

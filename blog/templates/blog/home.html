@@ -9,7 +9,7 @@
                     <small class="text-muted">{{ post.date_posted }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content">{{ post.get_markdown|truncatechars_html:50 }}</p>
                 <span>{{ post.likes.count }} <i class="far fa-thumbs-up" style="color: black"></i></span>
                 <span>, {{ post.comments.count }} <i class="far fa-comments" style="color: black"></i></span>
             </div>

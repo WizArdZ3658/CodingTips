@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.safestring import mark_safe
+from markdown_deux import markdown
 
 
 class Post(models.Model):
@@ -19,6 +21,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+    def get_markdown(self):
+        content = self.content
+        return mark_safe(markdown(content))
 
 
 class Comment(models.Model):

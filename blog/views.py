@@ -1,6 +1,4 @@
-from abc import ABC
-
-from django import forms
+from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
@@ -128,7 +126,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):  # use loginrequiredmixin cause cant use decorators on classes
     model = Post
-    fields = ['title', 'content']
+    # fields = ['title', 'content']
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -137,7 +136,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):  # use loginrequiredmixin 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):  # use loginrequiredmixin cause cant use
     model = Post  # decorators on classes
-    fields = ['title', 'content']
+    # fields = ['title', 'content']
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -152,12 +152,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):  # us
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('text',)
 
 
 @login_required

@@ -13,8 +13,8 @@
                     </div>
                 {% endif %}
             </div>
-            <h2>{{ post.title }}</h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a class="article-title">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.get_markdown }}</p>
         </div>
     </article>
     <div id="like-section">
