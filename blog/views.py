@@ -8,21 +8,6 @@ from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post, Comment
 
-"""posts = [
-    {
-        'author': 'Somnath',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'April 20, 2020'
-    },
-    {
-        'author': 'Meenal',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'April 21, 2020'
-    }
-]"""
-
 
 def home(request):  # not using this
     context = {

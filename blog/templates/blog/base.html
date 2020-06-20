@@ -17,6 +17,9 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/f6ed67285a.js" crossorigin="anonymous"></script>
 
+    <!-- Country flag CSS -->
+    <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
+
     {% if title %}
         <title>Tips&Tricks - {{ title }}</title>
     {% else %}
@@ -75,8 +78,8 @@
 
                 {% block content %}
                 {% endblock %}
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Optional JavaScript -->
