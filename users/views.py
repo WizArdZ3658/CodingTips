@@ -18,33 +18,26 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            # Old way of doing things, this is retarted.
-            # form.save()
-            # uname = form.cleaned_data.get('username')
-            # user = User.objects.get(username=uname)
-            # user.is_staff = True
-            # user.is_superuser = True
-            # user.save()
-            # messages.success(request, f'Account created for {uname}! You can now log in.')
-            # return redirect('login')
-
             uname = form.cleaned_data.get('username')
             user = form.save(commit=False)
-            user.is_active = False  # set to True to disable e-mail verification
+            user.is_active = True  # set to True to disable e-mail verification
             user.save()
-            current_site = get_current_site(request)
-            message = render_to_string('registration/acc_active_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            mail_subject = 'Activate your Tips&Tricks account.'
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
-            messages.success(request, f'Account created for {uname}! Click on the activation link sent to your e-mail '
-                                      f'id to activate your account.')
+
+            # current_site = get_current_site(request)
+            # message = render_to_string('registration/acc_active_email.html', {
+            #     'user': user,
+            #     'domain': current_site.domain,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': account_activation_token.make_token(user),
+            # })
+            # mail_subject = 'Activate your Tips&Tricks account.'
+            # to_email = form.cleaned_data.get('email')
+            # email = EmailMessage(mail_subject, message, to=[to_email])
+            # email.send()
+            # messages.success(request, f'Account created for {uname}! Click on the activation link sent to your e-mail '
+            #                           f'id to activate your account.')
+
+            messages.success(request, f'Account created for {uname}! You can now log in.')
             return redirect('login')
     else:
         form = UserRegisterForm()
