@@ -1,3 +1,4 @@
+import django
 from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
@@ -10,7 +11,7 @@ class Profile(models.Model):
     country = CountryField(blank_label='(select country)')
     first_name = models.CharField(max_length=50, blank=False, null=False)
     last_name = models.CharField(max_length=50, blank=False, null=False)
-    dob = models.DateField(default=date.today())
+    dob = models.DateField(default=django.utils.timezone.now)
 
     def __str__(self):
         return f'(self.user.username) Profile'
