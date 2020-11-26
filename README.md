@@ -19,9 +19,6 @@ Click [here](https://codingtips.herokuapp.com/) to access the website.
 ## Working with the API
 access the link here : https://codingtips.herokuapp.com/api/profiles/
 
-## New features to be added :-
- * Implement some cool front end features.
- 
 ## Technology Stack
 ##### Languages :-
 Python, HTML, CSS, SQL, Javascript, Git
