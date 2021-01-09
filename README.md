@@ -21,11 +21,11 @@ access the link here : https://codingtips.herokuapp.com/api/profiles/
 
 ## Technology Stack
 ##### Languages :-
-Python, HTML, CSS, SQL, Javascript, Git
+Python, HTML, CSS, SQL, Javascript
 
 ##### Frameworks, Libraries and Tools:-
 AJAX, Bootstrap, Django, Heroku-CLI, AWS(S3-bucket), PyCharm, JWT, Django REST framework, Django Crispy Forms, 
-Django Pagedown, Django Markdown Deux, JQuery, Marked.js, Django Countries, Django dob Widget
+Django Pagedown, Django Markdown Deux, JQuery, Marked.js, Django Countries, Django dob Widget, Git
 
 ##### Databases:-
 SQLite(for development), Postgresql(for production)
